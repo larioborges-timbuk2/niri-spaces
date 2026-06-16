@@ -1,0 +1,34 @@
+# Workspace Name
+@workspace system
+
+# Screen 1 - Left Column: Zenith
+com.mitchellh.ghostty | ghostty --title="system-zenith" -e zenith | | zenith_id
+
+# Screen 1 - Right Column: Harlequin
+com.mitchellh.ghostty | ghostty --title="system-harlequin" -e harlequin | | harlequin_id
+
+# Position Screen 1
+@action [ -n "$zenith_id" ] && niri msg action focus-window --id "$zenith_id" && niri msg action set-column-width "50%"
+@action [ -n "$harlequin_id" ] && niri msg action focus-window --id "$harlequin_id" && niri msg action set-column-width "50%"
+
+
+# Screen 2 - Left Column: Work Chrome Browser
+google-chrome | google-chrome --profile-directory="Default" --new-window about:blank | | chrome_id
+
+# Screen 2 - Right Column: Croft open at ~/Projects
+com.mitchellh.ghostty | ghostty --title="system-croft" --working-directory="/home/lario/Projects" -e croft | | croft_id
+
+# Position Screen 2
+@action [ -n "$chrome_id" ] && niri msg action focus-window --id "$chrome_id" && niri msg action set-column-width "50%"
+@action [ -n "$croft_id" ] && niri msg action focus-window --id "$croft_id" && niri msg action set-column-width "50%"
+
+
+# Screen 3 - Left Column: Personal Brave Browser
+brave | brave --new-window about:blank | | brave_id
+
+# Screen 3 - Right Column: Gram Editor
+app.liten.Gram | flatpak run app.liten.Gram | | gram_id
+
+# Position Screen 3
+@action [ -n "$brave_id" ] && niri msg action focus-window --id "$brave_id" && niri msg action set-column-width "50%"
+@action [ -n "$gram_id" ] && niri msg action focus-window --id "$gram_id" && niri msg action set-column-width "50%"
